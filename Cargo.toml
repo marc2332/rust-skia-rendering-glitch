@@ -5,9 +5,8 @@ edition = "2021"
 
 [dependencies]
 gl = "*"
-glutin = "0.30.6"
+glutin = "0.28.0"
 glutin-winit = "0.3.0"
-winit = "0.28.2"
-raw-window-handle = "0.5.1"
+winit = "0.27.5"
 
 skia-safe = { version = "0.60.0", features = ["gl", "textlayout", "svg"] }
