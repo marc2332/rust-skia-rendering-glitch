@@ -2,19 +2,13 @@ use winit::dpi::PhysicalSize;
 
 mod renderer {
     #![allow(clippy::unusual_byte_groupings)]
-    use skia_safe::{
-        Paint, Path, Rect
-    };
+    use skia_safe::{Paint, Path, Rect};
 
     pub fn render_frame(canvas: &mut skia_safe::canvas::Canvas) {
-
         // FIRST RECT
         {
             let mut path = Path::new();
-            path.add_rect(
-                Rect::new(0.0, 0.0, 400.0, 400.0),
-                None,
-            );
+            path.add_rect(Rect::new(0.0, 0.0, 400.0, 400.0), None);
             path.close();
 
             canvas.draw_path(&path, &Paint::default());
@@ -23,15 +17,7 @@ mod renderer {
         // SECOND RECT
         {
             let mut path = Path::new();
-            path.add_rect(
-                Rect::new(
-                    0.0,
-                    400.0,
-                    400.0,
-                    600.0,
-                ),
-                None,
-            );
+            path.add_rect(Rect::new(0.0, 400.0, 400.0, 600.0), None);
             path.close();
 
             canvas.draw_path(&path, &Paint::default());
@@ -71,7 +57,9 @@ fn main() {
     };
 
     let el = EventLoop::new();
-    let winit_window_builder = WindowBuilder::new().with_title("rust-skia-gl-window").with_inner_size(PhysicalSize::new(400, 600));
+    let winit_window_builder = WindowBuilder::new()
+        .with_title("rust-skia-gl-window")
+        .with_inner_size(PhysicalSize::new(400, 600));
 
     let template = ConfigTemplateBuilder::new()
         .with_alpha_size(8)
@@ -96,7 +84,7 @@ fn main() {
                 .unwrap()
         })
         .unwrap();
-    println!("Picked a config with {} samples", gl_config.num_samples());
+
     let mut window = window.expect("Could not create window with OpenGL context");
     let raw_window_handle = window.raw_window_handle();
 
@@ -194,7 +182,7 @@ fn main() {
         )
         .expect("Could not create skia surface")
     }
-    let num_samples = gl_config.num_samples() as usize;
+    let num_samples = 0; //gl_config.num_samples() as usize;
     let stencil_size = gl_config.stencil_size() as usize;
 
     let surface = create_surface(
